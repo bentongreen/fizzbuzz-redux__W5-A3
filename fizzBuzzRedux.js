@@ -1,17 +1,16 @@
 //Benton Green
-(function() {
-  function FizzBuzz(){
+  function FizzBuzz(input1, input2){
     var startNum;
     var endNum;
-  }
-    FizzBuzz.prototype.readFizzBuzz = function() {
-      console.log("read");
-      startNum = parseInt(document.getElementById('startNumber').value);
-      endNum = parseInt(document.getElementById('endNumber').value);
-    }
+    this.input1 = input1;
+    this.input2 = input2;
+    
+    this.readFizzBuzz = function(startNum, endNum){
+      startingNum = startNum;
+      endingNum = endNum;
+    };
 
-    FizzBuzz.prototype.writeFizzBuzz = function(startingNum, endingNum) {
-      console.log("write");
+    this.writeFizzBuzz = function() {
       this.startingNum = startingNum; 
       this.endingNum = endingNum + 1; //added one to stopNum so that it would include ending number in list
       
@@ -19,12 +18,10 @@
       fbOutputContent = document.createElement('li');
       
       while (fbOutputList.firstChild) { //basically checks to see if the fizzbuzz output ul has any content
-        console.log("reset");
         fbOutputList.removeChild(fbOutputList.firstChild); //loops through and removes all content, IE reset
       }
 
       function writeToList(item){
-      console.log("writeToList");
       fbOutputList = document.getElementsByClassName('fizzBuzzOutput')[0];
       fbOutputContent = document.createElement('li');
       fbOutputContent.appendChild(document.createTextNode(item));
@@ -33,28 +30,22 @@
 
       for(var x = this.startingNum; x < this.endingNum; x++) {
         if(x%3 === 0 && x%5 === 0){
-          writeToList(x + " fizzybuzzer");
+          writeToList(x + " " + input1 + " " + input2);
         }
           else if(x%3 === 0){
-            writeToList(x + " fizzy");  
+            writeToList(x + " " + input1);  
           }
             else if(x%5 === 0){
-              writeToList(x + " buzzer");
+              writeToList(x + " " + input2);
             }
             else{
               writeToList(x);
             }
       }
-    }
+    };
 
-  var submitButton = document.getElementsByTagName('button')[0];
-  submitButton.addEventListener('click', function(event1){
-    console.log("submit");
-    event1.preventDefault();
-    fizzyBuzzer.readFizzBuzz();
-    fizzyBuzzer.writeFizzBuzz(startNum,endNum);
-    document.getElementById('startNumber').value = '';
-    document.getElementById('endNumber').value = '';
-  });
-  var fizzyBuzzer = new FizzBuzz();
-})();
+    this.writeToFizzBuzz = function(tagName1){
+      tagName1.innerHTML = this.writeFizzBuzz(); 
+    };
+
+  }

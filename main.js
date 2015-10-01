@@ -7,10 +7,5 @@ function onButtonClick () {
 	var fizzyBuzzer = new FizzBuzz(input1,input2);
 	
 	fizzyBuzzer.readFizzBuzz(startNum,endNum);
-    fizzyBuzzer.writeToFizzBuzz(document.getElementById("fizzBuzzOutput"));
-    
-    document.getElementById('startNumber').value = '';
-    document.getElementById('endNumber').value = '';
-    document.getElementById('input1').value = '';
-    document.getElementById('input2').value = '';
+    fizzyBuzzer.writeToFizzBuzz(document.getElementsByClassName("fizzBuzzOutput"));
 }
